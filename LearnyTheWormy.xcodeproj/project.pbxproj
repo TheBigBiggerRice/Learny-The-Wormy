@@ -12,6 +12,11 @@
 		994110101FA40CF10070E187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9941100E1FA40CF10070E187 /* Main.storyboard */; };
 		994110121FA40CF10070E187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 994110111FA40CF10070E187 /* Assets.xcassets */; };
 		994110151FA40CF10070E187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 994110131FA40CF10070E187 /* LaunchScreen.storyboard */; };
+		9941101E1FA41F270070E187 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941101D1FA41F270070E187 /* UIColor.swift */; };
+		99437D271FA46428007515F1 /* networkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99437D261FA46428007515F1 /* networkRequest.swift */; };
+		9986F52A1FA510C7006357B7 /* LWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9986F5291FA510C7006357B7 /* LWLabel.swift */; };
+		9986F52E1FA52173006357B7 /* Bubblegum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9986F52C1FA5215C006357B7 /* Bubblegum.ttf */; };
+		998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A0BBA1FA4404600C88875 /* LWTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,12 @@
 		994110111FA40CF10070E187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		994110141FA40CF10070E187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		994110161FA40CF10070E187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9941101D1FA41F270070E187 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		99437D261FA46428007515F1 /* networkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkRequest.swift; sourceTree = "<group>"; };
+		9986F5291FA510C7006357B7 /* LWLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWLabel.swift; sourceTree = "<group>"; };
+		9986F52C1FA5215C006357B7 /* Bubblegum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bubblegum.ttf; sourceTree = "<group>"; };
+		998A0BBA1FA4404600C88875 /* LWTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWTextField.swift; sourceTree = "<group>"; };
+		99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +51,7 @@
 			children = (
 				994110091FA40CF10070E187 /* LearnyTheWormy */,
 				994110081FA40CF10070E187 /* Products */,
+				99ADAAF81FA52F9F007CD13A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +68,41 @@
 			children = (
 				9941100A1FA40CF10070E187 /* AppDelegate.swift */,
 				9941100C1FA40CF10070E187 /* ViewController.swift */,
+				99437D261FA46428007515F1 /* networkRequest.swift */,
 				9941100E1FA40CF10070E187 /* Main.storyboard */,
+				9941101C1FA41EDC0070E187 /* Extensions */,
+				9986F52B1FA52132006357B7 /* Resources */,
 				994110111FA40CF10070E187 /* Assets.xcassets */,
 				994110131FA40CF10070E187 /* LaunchScreen.storyboard */,
 				994110161FA40CF10070E187 /* Info.plist */,
 			);
 			path = LearnyTheWormy;
+			sourceTree = "<group>";
+		};
+		9941101C1FA41EDC0070E187 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9941101D1FA41F270070E187 /* UIColor.swift */,
+				998A0BBA1FA4404600C88875 /* LWTextField.swift */,
+				9986F5291FA510C7006357B7 /* LWLabel.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9986F52B1FA52132006357B7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9986F52C1FA5215C006357B7 /* Bubblegum.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		99ADAAF81FA52F9F007CD13A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +166,7 @@
 			files = (
 				994110151FA40CF10070E187 /* LaunchScreen.storyboard in Resources */,
 				994110121FA40CF10070E187 /* Assets.xcassets in Resources */,
+				9986F52E1FA52173006357B7 /* Bubblegum.ttf in Resources */,
 				994110101FA40CF10070E187 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,8 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */,
 				9941100D1FA40CF10070E187 /* ViewController.swift in Sources */,
+				9941101E1FA41F270070E187 /* UIColor.swift in Sources */,
+				99437D271FA46428007515F1 /* networkRequest.swift in Sources */,
 				9941100B1FA40CF10070E187 /* AppDelegate.swift in Sources */,
+				9986F52A1FA510C7006357B7 /* LWLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
