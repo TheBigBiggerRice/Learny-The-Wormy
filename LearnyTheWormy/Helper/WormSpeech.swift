@@ -10,7 +10,17 @@ import Foundation
 import AVFoundation
 class WormSpeech {
   func speech(result: String) {
-    let utterance = AVSpeechUtterance(string: result)
+    var utterance: AVSpeechUtterance
+    if result == "Emoji_100" {
+      utterance = AVSpeechUtterance(string: "full points")
+    }
+    else if result == "Emoji_Poop" {
+      utterance = AVSpeechUtterance(string: "try again")
+
+    }
+    else {
+      utterance = AVSpeechUtterance(string: result)
+    }
     var voiceToUse: AVSpeechSynthesisVoice?
     for voice in AVSpeechSynthesisVoice.speechVoices() {
       if #available(iOS 9.0, *) {

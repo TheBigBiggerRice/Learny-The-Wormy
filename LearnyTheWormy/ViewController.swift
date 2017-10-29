@@ -12,11 +12,12 @@ import Foundation
 import AVFoundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+  let userDefaults = UserDefaults.standard
   let wormSize = UIScreen.main.bounds.width
   var labelHeightConstraint: NSLayoutConstraint?
   var labelWidthConstraint: NSLayoutConstraint?
-  //var player: AVAudioPlayer?
+  var prevInput = ""
+  var count = 0
 
   fileprivate let inputTextField: LWTextField = {
     let textField = LWTextField()
@@ -65,8 +66,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     return view
   }()
   
+  fileprivate let pointLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont(name: "Bubblegum", size: 80)
+    //label.text = "\(count)"
+    return label
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    count = userDefaults.integer(forKey: "points")
+    userDefaults.synchronize()
+    pointLabel.text = "\(count)"
     initialize()
     inputTextField.delegate = self
     hideKeyboardWhenTappedAround()
@@ -79,6 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     view.addSubview(wormButton)
     view.addSubview(pictureImageView)
     view.addSubview(resultLabel)
+    view.addSubview(pointLabel)
     
     wormButton.addTarget(self, action: #selector(ViewController.wormTapped), for: .touchUpInside)
     //input text field on the very top
@@ -113,8 +127,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //what does the worm say?
     view.addConstraint(NSLayoutConstraint(item: resultLabel, attribute: .bottom, relatedBy: .equal, toItem: wormImageView, attribute: .top, multiplier: 1.0, constant: 20))
     view.addConstraint(NSLayoutConstraint(item: resultLabel, attribute: .centerX, relatedBy: .equal, toItem: inputTextField, attribute: .centerX, multiplier: 1.0, constant: 0))
-
     
+    view.addConstraint(NSLayoutConstraint(item: pointLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -50))
+    view.addConstraint(NSLayoutConstraint(item: pointLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -127,7 +143,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     NetworkRequest().apiCall(statement: textField.text!) { (result, url) -> Void in
       if let result = result {
         DispatchQueue.main.async {
-          self.resultLabel.text = result
+          print(result)
+          if (result == "Yes!" || result == "That's Correct!" || result == "You're right!" || result == "Emoji_100") && (textField.text!.removingWhitespaces() != self.prevInput) {
+            self.count += 1
+            self.prevInput = textField.text!.removingWhitespaces()
+            self.pointLabel.text = "\(self.count)"
+            self.userDefaults.set(self.count, forKey: "points")
+          }
+          if result == "Emoji_100" {
+            self.resultLabel.text = "💯"
+          }
+          else if result == "Emoji_Poop" {
+            self.resultLabel.text = "💩"
+          }
+          else {
+            self.resultLabel.text = result
+          }
           self.labelWidthConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.resultLabel.intrinsicContentSize.width + 40)
           self.labelHeightConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.resultLabel.intrinsicContentSize.height + 40)
           

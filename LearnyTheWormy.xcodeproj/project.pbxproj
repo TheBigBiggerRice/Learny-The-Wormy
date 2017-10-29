@@ -17,10 +17,12 @@
 		99437D271FA46428007515F1 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99437D261FA46428007515F1 /* NetworkRequest.swift */; };
 		997C327E1FA5681400D033BD /* WormSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C327D1FA5681400D033BD /* WormSpeech.swift */; };
 		997C32801FA5691800D033BD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C327F1FA5691800D033BD /* UIViewController.swift */; };
+		997C32831FA57B6600D033BD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C32821FA57B6600D033BD /* String.swift */; };
 		9986F52A1FA510C7006357B7 /* LWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9986F5291FA510C7006357B7 /* LWLabel.swift */; };
 		9986F52E1FA52173006357B7 /* Bubblegum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9986F52C1FA5215C006357B7 /* Bubblegum.ttf */; };
 		998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A0BBA1FA4404600C88875 /* LWTextField.swift */; };
 		99CAC3811FA5536800A81195 /* bubblePop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99CAC3801FA5536800A81195 /* bubblePop.wav */; };
+		99EB5EB41FA59A00006F236C /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5EB31FA59A00006F236C /* AvatarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,11 +39,13 @@
 		99437D261FA46428007515F1 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		997C327D1FA5681400D033BD /* WormSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WormSpeech.swift; sourceTree = "<group>"; };
 		997C327F1FA5691800D033BD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		997C32821FA57B6600D033BD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9986F5291FA510C7006357B7 /* LWLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWLabel.swift; sourceTree = "<group>"; };
 		9986F52C1FA5215C006357B7 /* Bubblegum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bubblegum.ttf; sourceTree = "<group>"; };
 		998A0BBA1FA4404600C88875 /* LWTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWTextField.swift; sourceTree = "<group>"; };
 		99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		99CAC3801FA5536800A81195 /* bubblePop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bubblePop.wav; path = ../../../../bubblePop.wav; sourceTree = "<group>"; };
+		99EB5EB31FA59A00006F236C /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LearnyTheWormy.framework; path = "../../../../../../../../../Library/Developer/Xcode/DerivedData/LearnyTheWormy-bgudyuumdsvvfkbqkjxkssoldbup/Build/Products/Debug-iphoneos/Pods_LearnyTheWormy.framework"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -80,6 +84,7 @@
 			children = (
 				9941100A1FA40CF10070E187 /* AppDelegate.swift */,
 				9941100C1FA40CF10070E187 /* ViewController.swift */,
+				99EB5EB31FA59A00006F236C /* AvatarViewController.swift */,
 				997C32811FA56C6C00D033BD /* Helper */,
 				9941100E1FA40CF10070E187 /* Main.storyboard */,
 				9941101C1FA41EDC0070E187 /* Extensions */,
@@ -98,6 +103,7 @@
 				998A0BBA1FA4404600C88875 /* LWTextField.swift */,
 				9986F5291FA510C7006357B7 /* LWLabel.swift */,
 				997C327F1FA5691800D033BD /* UIViewController.swift */,
+				997C32821FA57B6600D033BD /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,7 +278,9 @@
 				997C327E1FA5681400D033BD /* WormSpeech.swift in Sources */,
 				998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */,
 				9941100D1FA40CF10070E187 /* ViewController.swift in Sources */,
+				997C32831FA57B6600D033BD /* String.swift in Sources */,
 				9941101E1FA41F270070E187 /* UIColor.swift in Sources */,
+				99EB5EB41FA59A00006F236C /* AvatarViewController.swift in Sources */,
 				99437D271FA46428007515F1 /* NetworkRequest.swift in Sources */,
 				9941100B1FA40CF10070E187 /* AppDelegate.swift in Sources */,
 				997C32801FA5691800D033BD /* UIViewController.swift in Sources */,
