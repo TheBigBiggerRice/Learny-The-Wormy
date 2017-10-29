@@ -11,19 +11,17 @@ import Kingfisher
 import Foundation
 import AVFoundation
 
-
 class ViewController: UIViewController, UITextFieldDelegate {
-  let systemSoundID: SystemSoundID = 1305
 
   let wormSize = UIScreen.main.bounds.width
   var labelHeightConstraint: NSLayoutConstraint?
   var labelWidthConstraint: NSLayoutConstraint?
-  var player: AVAudioPlayer?
+  //var player: AVAudioPlayer?
 
   fileprivate let inputTextField: LWTextField = {
     let textField = LWTextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.placeholder = "What is your question?"
+    textField.placeholder = "Enter a mathematical statement, eg 3+2=5"
     textField.layer.borderColor = UIColor.gray.cgColor
     textField.layer.borderWidth = 1
     textField.layer.cornerRadius = 25
@@ -71,12 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     super.viewDidLoad()
     initialize()
     inputTextField.delegate = self
-    
     hideKeyboardWhenTappedAround()
-
-
-
-    
   }
 
   private func initialize() {
@@ -131,7 +124,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     self.labelWidthConstraint?.isActive = false
     self.labelHeightConstraint?.isActive = false
     
-    apiCall(statement: textField.text!) { (result, url) -> Void in
+    NetworkRequest().apiCall(statement: textField.text!) { (result, url) -> Void in
       if let result = result {
         DispatchQueue.main.async {
           self.resultLabel.text = result
@@ -147,19 +140,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.resultLabel.alpha = 1
           }, completion: nil)
           
-          let utterance = AVSpeechUtterance(string: result)
-          var voiceToUse: AVSpeechSynthesisVoice?
-          for voice in AVSpeechSynthesisVoice.speechVoices() {
-            if #available(iOS 9.0, *) {
-              if voice.name == "Samantha" {
-                voiceToUse = voice
-              }
-            }
-          }
-          utterance.voice = voiceToUse
-          utterance.pitchMultiplier = 1.3
-          let synth = AVSpeechSynthesizer()
-          synth.speak(utterance)
+          WormSpeech().speech(result: result)
+          
           if url != "" {
             UIView.animate(withDuration: 0.5, delay: 3.0, options: .curveEaseOut, animations: {
               self.resultLabel.alpha = 0
@@ -180,8 +162,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
   
   @objc func wormTapped() {
-    //AudioServicesPlaySystemSound (systemSoundID)
+    
     playSound()
+    
     UIView.animate(
       withDuration: 0.15,
       delay: 0.0,
@@ -202,41 +185,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
           completion: nil)})
   }
   
-  func apiCall(statement: String, completionHandler: @escaping (_ result: String?, _ url: String?) -> Void) {
-    let json: [String: String] = ["statement": statement]
-    let jsonData = try? JSONSerialization.data(withJSONObject: json)
-    let url = URL(string: "http://elbertw.pythonanywhere.com/learny/api/v1.0/eval")!
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.httpBody = jsonData
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-      guard let data = data, error == nil else {
-        print(error?.localizedDescription ?? "No data")
-        return
-      }
-      
-      let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-      
-      if let responseJSON = responseJSON as? [String: String] {
-        if let url = responseJSON["url"] {
-          completionHandler(responseJSON["result"], url)
-          
-        } else {
-        completionHandler(responseJSON["result"], "")
-        }
-      }
-    }
-    task.resume()
-
-  }
-  
   func imageFromURL(url: String) {
     let url = URL(string: url)
     pictureImageView.kf.setImage(with: url)
     pictureImageView.alpha = 1
   }
   
+  //tap on worm to make a sound
+  var player: AVAudioPlayer?
   func playSound() {
     guard let url = Bundle.main.url(forResource: "bubblePop", withExtension: "wav") else { return }
     
@@ -244,16 +200,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
       try AVAudioSession.sharedInstance().setActive(true)
       
-      
-      
-      /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
       player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
       
-      //iOS 10 and earlier require the following line:
-      //player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3.rawValue)
-      
       guard let player = player else { return }
-      
       player.play()
       
     } catch let error {
@@ -261,17 +210,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
   }
 }
-
-extension UIViewController {
-  func hideKeyboardWhenTappedAround() {
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-    tap.cancelsTouchesInView = false
-    view.addGestureRecognizer(tap)
-  }
-  
-  @objc func dismissKeyboard() {
-    view.endEditing(true)
-  }
-}
-
 
