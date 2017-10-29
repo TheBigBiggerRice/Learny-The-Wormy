@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8718A274D606220CD5FF4AE1 /* Pods_LearnyTheWormy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */; };
 		9941100B1FA40CF10070E187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941100A1FA40CF10070E187 /* AppDelegate.swift */; };
 		9941100D1FA40CF10070E187 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941100C1FA40CF10070E187 /* ViewController.swift */; };
 		994110101FA40CF10070E187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9941100E1FA40CF10070E187 /* Main.storyboard */; };
@@ -17,9 +18,12 @@
 		9986F52A1FA510C7006357B7 /* LWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9986F5291FA510C7006357B7 /* LWLabel.swift */; };
 		9986F52E1FA52173006357B7 /* Bubblegum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9986F52C1FA5215C006357B7 /* Bubblegum.ttf */; };
 		998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A0BBA1FA4404600C88875 /* LWTextField.swift */; };
+		99CAC3811FA5536800A81195 /* bubblePop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99CAC3801FA5536800A81195 /* bubblePop.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F24222C75FA2E217E7B1DF9 /* Pods-LearnyTheWormy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnyTheWormy.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnyTheWormy/Pods-LearnyTheWormy.release.xcconfig"; sourceTree = "<group>"; };
+		4A9EA31B75CA6C59F23ED790 /* Pods-LearnyTheWormy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnyTheWormy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnyTheWormy/Pods-LearnyTheWormy.debug.xcconfig"; sourceTree = "<group>"; };
 		994110071FA40CF10070E187 /* LearnyTheWormy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnyTheWormy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9941100A1FA40CF10070E187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9941100C1FA40CF10070E187 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +37,8 @@
 		9986F52C1FA5215C006357B7 /* Bubblegum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bubblegum.ttf; sourceTree = "<group>"; };
 		998A0BBA1FA4404600C88875 /* LWTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWTextField.swift; sourceTree = "<group>"; };
 		99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		99CAC3801FA5536800A81195 /* bubblePop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bubblePop.wav; path = ../../../../bubblePop.wav; sourceTree = "<group>"; };
+		D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LearnyTheWormy.framework; path = "../../../../../../../../../Library/Developer/Xcode/DerivedData/LearnyTheWormy-bgudyuumdsvvfkbqkjxkssoldbup/Build/Products/Debug-iphoneos/Pods_LearnyTheWormy.framework"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8718A274D606220CD5FF4AE1 /* Pods_LearnyTheWormy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +59,7 @@
 				994110091FA40CF10070E187 /* LearnyTheWormy */,
 				994110081FA40CF10070E187 /* Products */,
 				99ADAAF81FA52F9F007CD13A /* Frameworks */,
+				E19BBDA594F93FCC9E6D6E3D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +100,7 @@
 		9986F52B1FA52132006357B7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				99CAC3801FA5536800A81195 /* bubblePop.wav */,
 				9986F52C1FA5215C006357B7 /* Bubblegum.ttf */,
 			);
 			path = Resources;
@@ -101,8 +110,18 @@
 			isa = PBXGroup;
 			children = (
 				99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */,
+				D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E19BBDA594F93FCC9E6D6E3D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A9EA31B75CA6C59F23ED790 /* Pods-LearnyTheWormy.debug.xcconfig */,
+				2F24222C75FA2E217E7B1DF9 /* Pods-LearnyTheWormy.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,9 +131,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 994110191FA40CF10070E187 /* Build configuration list for PBXNativeTarget "LearnyTheWormy" */;
 			buildPhases = (
+				49805114819C551013944118 /* [CP] Check Pods Manifest.lock */,
 				994110031FA40CF10070E187 /* Sources */,
 				994110041FA40CF10070E187 /* Frameworks */,
 				994110051FA40CF10070E187 /* Resources */,
+				E272304A6AA2A7718693258B /* [CP] Embed Pods Frameworks */,
+				5ED60960C619723CD8F08F8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99CAC3811FA5536800A81195 /* bubblePop.wav in Resources */,
 				994110151FA40CF10070E187 /* LaunchScreen.storyboard in Resources */,
 				994110121FA40CF10070E187 /* Assets.xcassets in Resources */,
 				9986F52E1FA52173006357B7 /* Bubblegum.ttf in Resources */,
@@ -172,6 +195,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49805114819C551013944118 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LearnyTheWormy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5ED60960C619723CD8F08F8B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnyTheWormy/Pods-LearnyTheWormy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E272304A6AA2A7718693258B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LearnyTheWormy/Pods-LearnyTheWormy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnyTheWormy/Pods-LearnyTheWormy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		994110031FA40CF10070E187 /* Sources */ = {
@@ -318,11 +395,13 @@
 		};
 		9941101A1FA40CF10070E187 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9EA31B75CA6C59F23ED790 /* Pods-LearnyTheWormy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6MNS2MMD8U;
 				INFOPLIST_FILE = LearnyTheWormy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenyangzhang.LearnyTheWormy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -333,11 +412,13 @@
 		};
 		9941101B1FA40CF10070E187 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F24222C75FA2E217E7B1DF9 /* Pods-LearnyTheWormy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6MNS2MMD8U;
 				INFOPLIST_FILE = LearnyTheWormy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenyangzhang.LearnyTheWormy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

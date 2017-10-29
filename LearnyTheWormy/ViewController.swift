@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import Kingfisher
 import Foundation
 import AVFoundation
 
+
 class ViewController: UIViewController, UITextFieldDelegate {
-  
+  let systemSoundID: SystemSoundID = 1305
+
   let wormSize = UIScreen.main.bounds.width
   var labelHeightConstraint: NSLayoutConstraint?
   var labelWidthConstraint: NSLayoutConstraint?
-  
+  var player: AVAudioPlayer?
+
   fileprivate let inputTextField: LWTextField = {
     let textField = LWTextField()
     textField.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +52,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     return button
   }()
   
+  fileprivate let pictureImageView: UIImageView = {
+    let view = UIImageView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.alpha = 0
+    return view
+  }()
+  
   fileprivate let backgroundImageView: UIImageView = {
     let view = UIImageView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -73,6 +84,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     view.addSubview(inputTextField)
     view.addSubview(wormImageView)
     view.addSubview(wormButton)
+    view.addSubview(pictureImageView)
     view.addSubview(resultLabel)
     
     wormButton.addTarget(self, action: #selector(ViewController.wormTapped), for: .touchUpInside)
@@ -84,7 +96,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     //worm image view
     view.addConstraint(NSLayoutConstraint(item: wormImageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -100))
-    view.addConstraint(NSLayoutConstraint(item: wormImageView, attribute: .right, relatedBy: .equal, toItem: inputTextField, attribute: .right, multiplier: 1.0, constant: 0))
+    view.addConstraint(NSLayoutConstraint(item: wormImageView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1.0, constant: 0))
     view.addConstraint(NSLayoutConstraint(item: wormImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: wormSize))
     view.addConstraint(NSLayoutConstraint(item: wormImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: wormSize))
     
@@ -92,7 +104,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     view.addConstraint(NSLayoutConstraint(item: wormButton, attribute: .left, relatedBy: .equal, toItem: wormImageView, attribute: .left, multiplier: 1.0, constant: 0))
     view.addConstraint(NSLayoutConstraint(item: wormButton, attribute: .right, relatedBy: .equal, toItem: wormImageView, attribute: .right, multiplier: 1.0, constant: 0))
     view.addConstraint(NSLayoutConstraint(item: wormButton, attribute: .bottom, relatedBy: .equal, toItem: wormImageView, attribute: .bottom, multiplier: 1.0, constant: 0))
-
+    
+    //picture image view
+    view.addConstraint(NSLayoutConstraint(item: pictureImageView, attribute: .top, relatedBy: .equal, toItem: inputTextField, attribute: .bottom, multiplier: 1.0, constant: 10))
+    view.addConstraint(NSLayoutConstraint(item: pictureImageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+    view.addConstraint(NSLayoutConstraint(item: pictureImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: wormSize/2))
+    view.addConstraint(NSLayoutConstraint(item: pictureImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: wormSize/2))
     
     //background for the app
     view.addConstraint(NSLayoutConstraint(item: backgroundImageView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0))
@@ -110,38 +127,52 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
     self.resultLabel.alpha = 0
-    
+    self.pictureImageView.alpha = 0
     self.labelWidthConstraint?.isActive = false
     self.labelHeightConstraint?.isActive = false
-
+    
     apiCall(statement: textField.text!) { (result, url) -> Void in
-      //print(1)
       if let result = result {
-        //print(1)
         DispatchQueue.main.async {
           self.resultLabel.text = result
           self.labelWidthConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.resultLabel.intrinsicContentSize.width + 40)
-
           self.labelHeightConstraint = NSLayoutConstraint(item: self.resultLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.resultLabel.intrinsicContentSize.height + 40)
-          
           
           self.labelWidthConstraint?.isActive = true
           self.labelHeightConstraint?.isActive  = true
           
           self.resultLabel.layer.cornerRadius = (self.resultLabel.intrinsicContentSize.height + 40)/2
-          //self.resultLabel.alpha = 1
-          UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: {
+          
+          UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
             self.resultLabel.alpha = 1
           }, completion: nil)
+          
           let utterance = AVSpeechUtterance(string: result)
-          utterance.pitchMultiplier = 1.1
+          var voiceToUse: AVSpeechSynthesisVoice?
+          for voice in AVSpeechSynthesisVoice.speechVoices() {
+            if #available(iOS 9.0, *) {
+              if voice.name == "Samantha" {
+                voiceToUse = voice
+              }
+            }
+          }
+          utterance.voice = voiceToUse
+          utterance.pitchMultiplier = 1.3
           let synth = AVSpeechSynthesizer()
           synth.speak(utterance)
-          if let url = url {
-            print(url)
+          if url != "" {
+            UIView.animate(withDuration: 0.5, delay: 3.0, options: .curveEaseOut, animations: {
+              self.resultLabel.alpha = 0
+            }, completion: { finished in
+              if finished {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                  self.imageFromURL(url: url!)
+                  self.pictureImageView.alpha = 1
+                }, completion: nil)
+              }
+            })
           }
         }
-        
       }
     }
     textField.resignFirstResponder()
@@ -149,6 +180,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
   
   @objc func wormTapped() {
+    //AudioServicesPlaySystemSound (systemSoundID)
+    playSound()
     UIView.animate(
       withDuration: 0.15,
       delay: 0.0,
@@ -199,19 +232,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
   
   func imageFromURL(url: String) {
-    //print(url)
-    //return url
-  //}
+    let url = URL(string: url)
+    pictureImageView.kf.setImage(with: url)
+    pictureImageView.alpha = 1
+  }
+  
+  func playSound() {
+    guard let url = Bundle.main.url(forResource: "bubblePop", withExtension: "wav") else { return }
+    
+    do {
+      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+      try AVAudioSession.sharedInstance().setActive(true)
+      
+      
+      
+      /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+      player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+      
+      //iOS 10 and earlier require the following line:
+      //player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3.rawValue)
+      
+      guard let player = player else { return }
+      
+      player.play()
+      
+    } catch let error {
+      print(error.localizedDescription)
+    }
   }
 }
-
-
-
-
-
-
-
-
 
 extension UIViewController {
   func hideKeyboardWhenTappedAround() {
