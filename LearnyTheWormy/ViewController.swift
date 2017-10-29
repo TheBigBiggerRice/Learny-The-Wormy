@@ -70,8 +70,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont(name: "Bubblegum", size: 80)
+    //label.textColor = .white
     //label.text = "\(count)"
     return label
+  }()
+  
+  fileprivate let avatarButton: UIButton = {
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle("Change Avatar", for: .normal)
+    button.titleLabel?.font = UIFont(name: "Bubblegum", size: 24)
+    button.setTitleColor(.black, for: .normal)
+    
+    return button
+    
   }()
   
   override func viewDidLoad() {
@@ -84,6 +96,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     inputTextField.delegate = self
     hideKeyboardWhenTappedAround()
   }
+  
+  deinit {
+    wormButton.removeTarget(self, action: nil, for: .allEvents)
+  }
+  
 
   private func initialize() {
     view.addSubview(backgroundImageView)
@@ -93,8 +110,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     view.addSubview(pictureImageView)
     view.addSubview(resultLabel)
     view.addSubview(pointLabel)
+    view.addSubview(avatarButton)
     
     wormButton.addTarget(self, action: #selector(ViewController.wormTapped), for: .touchUpInside)
+    avatarButton.addTarget(self, action: #selector(ViewController.avatarButtonTapped), for: .touchUpInside)
+    
     //input text field on the very top
     view.addConstraint(NSLayoutConstraint(item: inputTextField, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20))
     view.addConstraint(NSLayoutConstraint(item: inputTextField, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1.0, constant: 10))
@@ -128,8 +148,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     view.addConstraint(NSLayoutConstraint(item: resultLabel, attribute: .bottom, relatedBy: .equal, toItem: wormImageView, attribute: .top, multiplier: 1.0, constant: 20))
     view.addConstraint(NSLayoutConstraint(item: resultLabel, attribute: .centerX, relatedBy: .equal, toItem: inputTextField, attribute: .centerX, multiplier: 1.0, constant: 0))
     
-    view.addConstraint(NSLayoutConstraint(item: pointLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -50))
+    //points
+    view.addConstraint(NSLayoutConstraint(item: pointLabel, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -70))
     view.addConstraint(NSLayoutConstraint(item: pointLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+    
+    //avatar button
+    view.addConstraint(NSLayoutConstraint(item: avatarButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -10))
+    view.addConstraint(NSLayoutConstraint(item: avatarButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0))
+    view.addConstraint(NSLayoutConstraint(item: avatarButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50))
+    view.addConstraint(NSLayoutConstraint(item: avatarButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 300))
+
 
   }
 
@@ -215,6 +243,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         },
           completion: nil)})
   }
+  
+  @objc func avatarButtonTapped() {
+    
+    let avatarViewController = AvatarViewController()
+    present(avatarViewController, animated: true, completion: nil)
+  }
+  
+  
+  
+  
   
   func imageFromURL(url: String) {
     let url = URL(string: url)

@@ -23,6 +23,7 @@
 		998A0BBB1FA4404600C88875 /* LWTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A0BBA1FA4404600C88875 /* LWTextField.swift */; };
 		99CAC3811FA5536800A81195 /* bubblePop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 99CAC3801FA5536800A81195 /* bubblePop.wav */; };
 		99EB5EB41FA59A00006F236C /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5EB31FA59A00006F236C /* AvatarViewController.swift */; };
+		99EB5EB71FA5AF3C006F236C /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5EB61FA5AF3C006F236C /* AvatarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		99ADAAF91FA52F9F007CD13A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		99CAC3801FA5536800A81195 /* bubblePop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bubblePop.wav; path = ../../../../bubblePop.wav; sourceTree = "<group>"; };
 		99EB5EB31FA59A00006F236C /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
+		99EB5EB61FA5AF3C006F236C /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LearnyTheWormy.framework; path = "../../../../../../../../../Library/Developer/Xcode/DerivedData/LearnyTheWormy-bgudyuumdsvvfkbqkjxkssoldbup/Build/Products/Debug-iphoneos/Pods_LearnyTheWormy.framework"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 		994110091FA40CF10070E187 /* LearnyTheWormy */ = {
 			isa = PBXGroup;
 			children = (
+				99EB5EB51FA5AEB0006F236C /* Views */,
 				9941100A1FA40CF10070E187 /* AppDelegate.swift */,
 				9941100C1FA40CF10070E187 /* ViewController.swift */,
 				99EB5EB31FA59A00006F236C /* AvatarViewController.swift */,
@@ -133,6 +136,14 @@
 				D869428B084E44E11A09683B /* Pods_LearnyTheWormy.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99EB5EB51FA5AEB0006F236C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99EB5EB61FA5AF3C006F236C /* AvatarCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E19BBDA594F93FCC9E6D6E3D /* Pods */ = {
@@ -284,6 +295,7 @@
 				99437D271FA46428007515F1 /* NetworkRequest.swift in Sources */,
 				9941100B1FA40CF10070E187 /* AppDelegate.swift in Sources */,
 				997C32801FA5691800D033BD /* UIViewController.swift in Sources */,
+				99EB5EB71FA5AF3C006F236C /* AvatarCell.swift in Sources */,
 				9986F52A1FA510C7006357B7 /* LWLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
