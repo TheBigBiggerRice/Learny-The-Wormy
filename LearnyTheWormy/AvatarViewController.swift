@@ -25,9 +25,8 @@ class AvatarViewController: UIViewController, UITableViewDelegate, UITableViewDa
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    //let barHeight = UIApplication.shared.statusBarFrame.size.height
     let screenWidth = view.frame.width
-    //let screenHeight = view.frame.height
+    
     avatarTableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 600)
     
     avatarTableView.register(AvatarCell.self, forCellReuseIdentifier: "AvatarCell")
@@ -35,7 +34,6 @@ class AvatarViewController: UIViewController, UITableViewDelegate, UITableViewDa
     avatarTableView.delegate = self
     view.addSubview(avatarTableView)
     initialize()
-
 
   }
   private func initialize() {
